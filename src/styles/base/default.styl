@@ -1,0 +1,86 @@
+// --------------------------------------------------
+// Default
+// --------------------------------------------------
+
+
+// -------------------------
+// Reset the box-sizing
+// -------------------------
+
+if border-box {
+    html {
+        box-sizing border-box;
+    }
+
+    * {
+        &,
+        &:before,
+        &:after {
+            box-sizing border-box;
+        }
+    }
+}
+
+// -------------------------
+// Body reset
+// -------------------------
+
+html {
+    -webkit-tap-highlight-color rgba(0,0,0,0)
+}
+
+body {
+    font-family $font-base
+    font-size 16
+
+    -webkit-font-smoothing: antialiased
+    -moz-osx-font-smoothing: grayscale
+
+    -moz-font-feature-settings: "liga", "kern"
+    text-rendering: optimizelegibility
+
+    -webkit-text-size-adjust: 100%
+        -ms-text-size-adjust: 100%
+
+
+    color: $colors['white']
+    
+    background #f1f1fb
+
+
+    height auto
+    overflow auto
+}
+
+.is-disable-scroll {
+    width 100%
+    height 100%
+    overflow hidden
+}
+
+::-moz-selection {
+    color: $colors['white']
+    background: $colors['black']
+}
+
+::selection {
+    color: $colors['white']
+    background: $colors['black']
+}
+
+img {
+    -ms-interpolation-mode bicubic;
+}
+
+canvas {
+    display block
+}
+
+blockquote {
+    -webkit-margin-start: 0;
+    -webkit-margin-end: 0;
+}
+
+strong {
+    font-weight normal
+}

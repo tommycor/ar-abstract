@@ -1,0 +1,90 @@
+// --------------------------------------------------
+// Grids
+// --------------------------------------------------
+
+for grid in $grids {
+    for index in (1..grid){
+        .u-w{index}of{grid} {
+            width: (100% / grid) * index
+        }
+        
+        .u-h{index}of{grid} {
+            height: (100% / grid) * index
+        }
+        
+        .u-marg-l-w{index}of{grid} {
+            margin-left: (100% / grid) * index
+        }
+        
+        .u-marg-t-w{index}of{grid} {
+            margin-top: (100% / grid) * index
+        }
+        
+        .u-marg-r-w{index}of{grid} {
+            margin-right: (100% / grid) * index    
+        }
+        
+        .u-pad-l-w{index}of{grid} {
+            padding-left: (100% / grid) * index    
+        }
+        
+        .u-pad-r-w{index}of{grid} {
+            padding-right: (100% / grid) * index    
+        }
+        
+        .u-pad-x-w{index}of{grid} {
+            padding-left: (100% / grid) * index  
+            padding-right: (100% / grid) * index    
+        }
+        
+        .u-marg-b-vh{index}of{grid} {
+            margin-bottom (100vh / grid) * index
+        }
+        
+        .u-marg-t-vh{index}of{grid} {
+            margin-top (100vh / grid) * index
+        }
+        
+        .u-pad-b-vh{index}of{grid} {
+            padding-bottom (100vh / grid) * index
+        }
+        
+        .u-pad-t-vh{index}of{grid} {
+            padding-top (100vh / grid) * index
+        }
+        
+        .u-pad-y-vh{index}of{grid} {
+            padding-top (100vh / grid) * index
+            padding-bottom (100vh / grid) * index
+        }
+    }
+}
+
+// grid responsive
+
+for breakpoint in $breakpoints {
+    @media $breakpoints[breakpoint] {
+        
+        for grid in $grids {
+            for index in (1..grid){
+                .u-w{index}of{grid}\\\@{breakpoint} {
+                    width: (100% / grid) * index
+                }
+                
+                .u-marg-l-w{index}of{grid}\\\@{breakpoint} {
+                    margin-left: (100% / grid) * index
+                }
+                
+                .u-marg-r-w{index}of{grid}\\\@{breakpoint} {
+                    margin-right: (100% / grid) * index    
+                }
+                
+                .u-pad-r-w{index}of{grid}\\\@{breakpoint} {
+                    padding-right: (100% / grid) * index    
+                }
+
+            }
+        }
+        
+    }
+}

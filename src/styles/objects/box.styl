@@ -1,0 +1,122 @@
+.o-box {
+	position relative
+	&:before {
+		position relative
+		content ''
+		display inline-block
+		width 100%
+	}
+}
+
+.o-box--16by9 {
+	@extends .o-box
+	&:before {
+		position relative
+		content ''
+		display inline-block
+		width 100%
+		padding-bottom 56.25% // 100*9/16
+		
+
+		min-height 150px
+	}
+}
+
+.o-box--1by1 {
+	@extends .o-box
+	&:before {
+		position relative
+		content ''
+		display inline-block
+		width 100%
+		padding-top 100%
+	}
+}
+
+.o-box--1by2 {
+	@extends .o-box
+	&:before {
+		position relative
+		content ''
+		display inline-block
+		width 100%
+		padding-top 50%
+	}
+}
+
+.o-box--2by1 {
+	@extends .o-box
+	&:before {
+		position relative
+		content ''
+		display inline-block
+		width 200%
+		padding-top 50%
+	}
+}
+
+.o-box--1by4 {
+	@extends .o-box
+	&:before {
+		position relative
+		content ''
+		display inline-block
+		width 100%
+		padding-top 25%
+	}
+}
+
+.o-box--3by4 {
+	@extends .o-box
+	&:before {
+		position relative
+		content ''
+		display inline-block
+		width 100%
+		padding-top 75%
+	}
+}
+
+.o-box--1by12 {
+	@extends .o-box
+	&:before {
+		position relative
+		content ''
+		display inline-block
+		width 100%
+		padding-top 120%
+	}	
+}
+
+.o-box--4by10 {
+	@extends .o-box
+	&:before {
+		position relative
+		content ''
+		display inline-block
+		width 100%
+		padding-top 40%
+	}	
+}
+
+.o-box--6by10 {
+	@extends .o-box
+	&:before {
+		position relative
+		content ''
+		display inline-block
+		width 100%
+		padding-top 60%
+	}	
+}
+
+.o-box--7by10 {
+	@extends .o-box
+	&:before {
+		position relative
+		content ''
+		display inline-block
+		width 100%
+		padding-top 70%
+	}	
+}

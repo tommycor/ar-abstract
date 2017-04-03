@@ -1,0 +1,155 @@
+// --------------------------------------------------
+// Spacing
+// --------------------------------------------------
+
+// -------------------------
+// Margin
+// -------------------------
+
+.u-marg-a-0 { margin:        0 }
+.u-marg-t-0 { margin-top:    0 }
+.u-marg-r-0 { margin-right:  0 }
+.u-marg-b-0 { margin-bottom: 0 }
+.u-marg-l-0 { margin-left:   0 }
+.u-marg-x-0 { 
+    margin-right:  0 
+    margin-left:   0
+}
+
+.u-marg-y-0 { 
+    margin-top:    0
+    margin-bottom: 0
+}
+
+.u-marg-x-auto {
+    margin-right auto 
+    margin-left auto
+}
+
+for margin in $margins {
+    .u-marg-a-{margin} { margin:        $margins[margin] }
+    .u-marg-t-{margin} { margin-top:    $margins[margin] }
+    .u-marg-r-{margin} { margin-right:  $margins[margin] }
+    .u-marg-b-{margin} { margin-bottom: $margins[margin] }
+    .u-marg-l-{margin} { margin-left:   $margins[margin] }
+    .u-marg-x-{margin} {
+        margin-right:   $margins[margin]
+        margin-left:    $margins[margin]
+    }
+    .u-marg-y-{margin} {
+        margin-top:     $margins[margin]
+        margin-bottom:  $margins[margin]
+    }
+}
+
+for breakpoint in $breakpoints {
+    @media $breakpoints[breakpoint] {
+        
+        .u-marg-a-0\\\@{breakpoint} { margin:        0 }
+        .u-marg-t-0\\\@{breakpoint} { margin-top:    0 }
+        .u-marg-r-0\\\@{breakpoint} { margin-right:  0 }
+        .u-marg-b-0\\\@{breakpoint} { margin-bottom: 0 }
+        .u-marg-l-0\\\@{breakpoint} { margin-left:   0 }
+        .u-marg-x-0\\\@{breakpoint} { 
+            margin-right:  0 
+            margin-left:   0
+        }
+
+        .u-marg-y-0\\\@{breakpoint} { 
+            margin-top:    0
+            margin-bottom: 0
+        }
+
+        .u-marg-x-auto\\\@{breakpoint} {
+            margin-right auto 
+            margin-left auto
+        }
+        
+        for margin in $margins {
+            .u-marg-a-{margin}\\\@{breakpoint} { margin:        $margins[margin] }
+            .u-marg-t-{margin}\\\@{breakpoint} { margin-top:    $margins[margin] }
+            .u-marg-r-{margin}\\\@{breakpoint} { margin-right:  $margins[margin] }
+            .u-marg-b-{margin}\\\@{breakpoint} { margin-bottom: $margins[margin] }
+            .u-marg-l-{margin}\\\@{breakpoint} { margin-left:   $margins[margin] }
+            .u-marg-x-{margin}\\\@{breakpoint} {
+                margin-right:   $margins[margin]
+                margin-left:    $margins[margin]
+            }
+            .u-marg-y-{margin}\\\@{breakpoint} {
+                margin-top:     $margins[margin]
+                margin-bottom:  $margins[margin]
+            }
+        }
+    }
+}
+
+
+
+// -------------------------
+// Padding
+// -------------------------
+
+.u-pad-a-0 { padding:        0 }
+.u-pad-t-0 { padding-top:    0 }
+.u-pad-r-0 { padding-right:  0 }
+.u-pad-b-0 { padding-bottom: 0 }
+.u-pad-l-0 { padding-left:   0 }
+.u-pad-x-0 { 
+    padding-left  0
+    padding-right 0
+}
+.u-pad-y-0 { 
+    padding-top    0
+    padding-bottom 0
+}
+
+for padding in $paddings {
+    .u-pad-a-{padding} { padding:        $paddings[padding] }
+    .u-pad-t-{padding} { padding-top:    $paddings[padding] }
+    .u-pad-r-{padding} { padding-right:  $paddings[padding] }
+    .u-pad-b-{padding} { padding-bottom: $paddings[padding] }
+    .u-pad-l-{padding} { padding-left:   $paddings[padding] }
+    .u-pad-x-{padding} {
+        padding-right:  $paddings[padding]
+        padding-left:   $paddings[padding]
+    }
+    .u-pad-y-{padding} {
+        padding-top:    $paddings[padding]
+        padding-bottom: $paddings[padding]
+    }
+}
+
+for breakpoint in $breakpoints {
+    @media $breakpoints[breakpoint] {
+        
+        .u-pad-a-0\\\@{breakpoint} { padding:        0 }
+        .u-pad-t-0\\\@{breakpoint} { padding-top:    0 }
+        .u-pad-r-0\\\@{breakpoint} { padding-right:  0 }
+        .u-pad-b-0\\\@{breakpoint} { padding-bottom: 0 }
+        .u-pad-l-0\\\@{breakpoint} { padding-left:   0 }
+        .u-pad-x-0\\\@{breakpoint} {
+            padding-left  0
+            padding-right 0
+        }
+        .u-pad-y-0\\\@{breakpoint} {
+            padding-top    0
+            padding-bottom 0
+        }
+        
+        for padding in $paddings {
+            .u-pad-a-{padding}\\\@{breakpoint} { padding:        $paddings[padding] }
+            .u-pad-t-{padding}\\\@{breakpoint} { padding-top:    $paddings[padding] }
+            .u-pad-r-{padding}\\\@{breakpoint} { padding-right:  $paddings[padding] }
+            .u-pad-b-{padding}\\\@{breakpoint} { padding-bottom: $paddings[padding] }
+            .u-pad-l-{padding}\\\@{breakpoint} { padding-left:   $paddings[padding] }
+            .u-pad-x-{padding}\\\@{breakpoint} {
+                padding-right:   $paddings[padding]
+                padding-left:    $paddings[padding]
+            }
+            .u-pad-y-{padding}\\\@{breakpoint} {
+                padding-top:     $paddings[padding]
+                padding-bottom:  $paddings[padding]
+            }
+        }
+    }
+}

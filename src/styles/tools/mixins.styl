@@ -1,0 +1,29 @@
+// --------------------------------------------------
+// Mixins
+// --------------------------------------------------
+
+// font-size in rem
+font-size(size, use-rem=true) {
+  if use-rem {
+    font-size '%spx' % size;
+    font-size (size / 16) * 1rem;
+  }
+  else {
+    font-size size
+  }
+}
+
+// decline selector in medias query
+responsive($selector) {
+    {$selector} {
+        {block}
+    }
+    
+    for breakpoint in $breakpoints {
+         @media $breakpoints[breakpoint] {
+            {$selector}\\\@{breakpoint} {
+                {block}
+            }
+        }
+    }
+}

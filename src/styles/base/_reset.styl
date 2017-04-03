@@ -1,0 +1,72 @@
+// --------------------------------------------------
+// Reset placeholders
+// --------------------------------------------------
+
+$reset-spacing {
+    margin 0
+    padding 0
+}
+
+$reset-heading {
+    margin 0 unless @margin
+    font-weight normal unless @font-weight
+    line-height 1 unless @line-height
+    -webkit-margin-before: 0;
+    -webkit-margin-after: 0;
+}
+
+$reset-paragraph {
+    margin 0 unless @margin
+    line-height 1 unless @line-height
+    -webkit-margin-before 0
+    -webkit-margin-after 0
+}
+
+$reset-input {
+    background none
+    border none
+    outline none
+
+    padding 0
+    margin 0
+
+    -webkit-appearance none !important
+}
+
+$reset-list {
+    list-style none
+    margin 0
+    padding 0
+    -webkit-margin-before: 0;
+}
+
+$reset-link {
+    color inherit;
+    cursor pointer;
+    text-decoration none;
+
+    &:hover {
+        text-decoration none
+    }
+
+    &:active, &:focus {
+        outline none;
+    }
+}
+
+$reset-media {
+    display block
+}
+
+$reset-font-size {
+    font-size 0
+}
+
+$reset-position {
+    top 0
+    left 0
+}
+
+$reset-font-style {
+    font-style normal;
+}

@@ -1,0 +1,389 @@
+// --------------------------------------------------
+// Helpers
+// --------------------------------------------------
+
+// -------------------------
+// text align
+// -------------------------
+
++responsive(".u-align-center") {
+    text-align: center
+}
+
++responsive(".u-align-right") {
+    text-align right
+}
+
++responsive(".u-align-left") {
+    text-align left
+}
+
++responsive(".u-text-justify") {
+    text-align justify
+}
+
+
+// -------------------------
+// float
+// -------------------------
+
++responsive(".u-float-l") {
+    float left
+}
+
++responsive(".u-float-r") {
+    float right
+}
+
+
+.u-pos-y-center {
+    top 50%
+    transform translateY(-50%)
+}
+
+.u-pos-r {
+    right 0
+}
+
+.u-pos-l {
+    left 0
+}
+
+.u-fit-half-h {
+    height 50%
+}
+
+// -------------------------
+// text style
+// -------------------------
+
++responsive(".u-valign-top") {
+    vertical-align top
+}
+
++responsive(".u-valign-bottom") {
+    vertical-align bottom
+}
+
++responsive(".u-valign-middle") {
+    vertical-align middle
+}
+
+// -------------------------
+// marg
+// -
+
++responsive(".u-marg-x-auto") {
+    margin-left auto
+    margin-right auto
+}
+
+
+// -------------------------
+// text style
+// -------------------------
+
++responsive(".u-underline") {
+    text-decoration underline
+}
+
++responsive(".u-uppercase") {
+    text-transform uppercase
+}
+
++responsive(".u-capitalize") {
+    text-transform capitalize
+}
+
++responsive(".u-lowercase") {
+    text-transform lowercase
+}
+
++responsive(".u-bold") {
+    font-family: $font-bold
+}
+
++responsive(".u-italic") {
+    font-style: italic
+}
+
++responsive(".u-regular") {
+    font-family: $font-regular
+}
+
+
+// -------------------------
+// display
+// -------------------------
+
++responsive(".u-inline-block") {
+    display inline-block;
+}
+
++responsive(".u-flex") {
+    display flex;
+}
+
++responsive(".u-block") {
+    display block;
+}
+
++responsive(".u-invisible") {
+    visibility hidden
+}
+
++responsive(".u-overflow-h") {
+    overflow hidden
+}
+
++responsive(".u-overflow-s") {
+    overflow scroll
+    -webkit-overflow-scrolling touch
+}
+
++responsive(".u-hide") {
+    display none;
+}
+
++responsive(".u-space-between") {
+    justify-content space-between
+}
+
+// -------------------------
+// Fit
+// -------------------------
+
++responsive(".u-fit") {
+    width 100%
+    height 100%
+}
+
++responsive(".u-fit-w") {
+    width 100%
+}
+
++responsive(".u-auto-h") {
+    height auto
+}
+
++responsive(".u-fit-h") {
+    height 100%
+}
+
++responsive(".u-viewport-fit") {
+    width 100vw
+    height 100vh
+}
+
++responsive(".u-viewport-fit-w") {
+    width 100vw
+}
+
++responsive(".u-viewport-fit-h") {
+    height 100vh
+}
+
++responsive(".u-height-a") {
+    height auto
+}
+
+
+// -------------------------
+// Fit
+// -------------------------
+
+.u-vacuum {
+    @extends $reset-font-size
+}
+
++responsive(".u-absolute") {
+    position absolute
+}
+
++responsive(".u-relative") {
+    position relative
+}
+
++responsive(".u-fixed") {
+    position fixed
+    will-change transform
+}
+
++responsive(".u-sticky") {
+    position fixed
+    position sticky
+}
+
+// -------------------------
+// direction
+// -------------------------
+
++responsive(".u-rtl"){
+    direction rtl
+}
+
++responsive(".u-ltr"){
+    direction ltr
+}
+
+// -------------------------
+// position
+// -------------------------
+
++responsive(".u-pos-tl") {
+    top 0
+    left 0
+}
+
++responsive(".u-pos-tr") {
+    top 0
+    right 0
+}
+
++responsive(".u-pos-bl") {
+    bottom 0
+    left 0
+}
+
++responsive(".u-pos-br") {
+    bottom 0
+    right 0
+}
+
++responsive(".u-pos-center") {
+    top 50%
+    left 50%
+
+    transform translate(-50%, -50%)
+}
+
+// -------------------------
+// cursors
+// -------------------------
+
++responsive(".u-cursor-grab") {
+    cursor grab
+    
+    &.is-grabbing {
+        cursor grabbing
+    }
+    
+    .is-grabbing & {
+        cursor grabbing
+    }
+}
+
++responsive(".u-cursor-grabbing") {
+    cursor grabbing
+}
+
++responsive(".u-cursor-pointer") {
+    cursor pointer
+}
+
+// -------------------------
+// shape border
+// -------------------------
+
+
+.u-shape-circle {
+    border-radius 50%
+}
+
+
+// -------------------------
+// other
+// -------------------------
+
++responsive(".u-cover") {
+    background-size cover;
+}
+
++responsive(".u-pointer-none") {
+    pointer-events none;
+}
+
++responsive(".u-object-fit-cover") {
+    object-fit cover
+}
+
++responsive(".u-object-fit-contain") {
+    object-fit contain
+}
+
++responsive(".u-force-inline") {
+    white-space nowrap
+}
+
++responsive(".u-backface-hidden") {
+    backface-visibility hidden
+}
+
++responsive(".u-disable-selection") {
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none;   /* Chrome/Safari/Opera */
+    -khtml-user-select: none;    /* Konqueror */
+    -moz-user-select: none;      /* Firefox */
+    -ms-user-select: none;       /* IE/Edge */
+    user-select: none;  
+}
+
+
+.u-force-3d{suffix} {
+    transform translateZ(0)
+    -ms-transform-style preserve-3d
+    backface-visibility hidden
+    will-change transform
+    -ms-perspectve 2000px
+}
+
+
+.u-bg-no-repeat {
+    background-repeat: no-repeat;
+}
+
+// -------------------------
+// colors
+// -------------------------
+
+for color in $colors {
+    .u-color--{color} {
+        color: $colors[color];
+    }
+}
+
+
+// -------------------------
+// background color
+// -------------------------
+
+for color in $colors {
+    .u-bg--{color} {
+        background-color $colors[color]
+    }
+}
+
+
+// -------------------------
+// fill color
+// -------------------------
+
+for color in $colors {
+    .u-fill--{color} {
+        svg{
+            fill $colors[color]
+        }
+    }
+}
+
+// -------------------------
+// stroke color
+// -------------------------
+
+for color in $colors {
+    .u-stroke--{color} {
+        svg{
+            stroke $colors[color]
+        }
+    }
+}

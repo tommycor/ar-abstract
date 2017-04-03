@@ -1,0 +1,27 @@
+// --------------------------------------------------
+// Wrapper
+// --------------------------------------------------
+
+.o-wrapper {
+    position relative
+}
+
+.o-wrapper--panel {
+    @extends $reset-position
+    position absolute
+    top 0
+    left 0
+}
+
+.o-wrapper--valign {
+    @extends $reset-font-size
+    @extends .o-wrapper
+
+    &:after {
+        content ""
+        display inline-block
+        height 100%
+        width 0
+        vertical-align middle 
+    }
+}

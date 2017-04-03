@@ -1,0 +1,8 @@
+.DS_Store
+.sass-cache
+/npm-debug.log
+/.vagrant
+/node_modules
+/npm-debug.log
+/static
+/node_modules
