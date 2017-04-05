@@ -1,4 +1,4 @@
-(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({"D:\\Documents\\git\\ar-abstract\\node_modules\\three\\build\\three.js":[function(require,module,exports){
+(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({"/Users/tommy.cornilleau/Desktop/TEMP/ar-abstract/node_modules/three/build/three.js":[function(require,module,exports){
 (function (global, factory) {
 	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
 	typeof define === 'function' && define.amd ? define(['exports'], factory) :
@@ -43300,7 +43300,7 @@
 
 })));
 
-},{}],"D:\\Documents\\git\\ar-abstract\\src\\scripts\\components\\scene.js":[function(require,module,exports){
+},{}],"/Users/tommy.cornilleau/Desktop/TEMP/ar-abstract/src/scripts/components/scene.js":[function(require,module,exports){
 'use strict';
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
@@ -43325,254 +43325,254 @@ var _utilsMapper2 = _interopRequireDefault(_utilsMapper);
 
 module.exports = {
 
-		init: function init() {
+	init: function init() {
 
-				this.render = this.render.bind(this);
-				this.onClick = this.onClick.bind(this);
-				this.onResize = this.onResize.bind(this);
-				this.onMove = this.onMove.bind(this);
-				this.clock = new THREE.Clock();
-				this.cameraPos = new THREE.Vector3(_utilsConfig2['default'].camera.position.x, _utilsConfig2['default'].camera.position.y, _utilsConfig2['default'].camera.position.z);
-				this.currentCameraPos = new THREE.Vector3(this.cameraPos.x, this.cameraPos.y, this.cameraPos.z);
+		this.render = this.render.bind(this);
+		this.onClick = this.onClick.bind(this);
+		this.onResize = this.onResize.bind(this);
+		this.onMove = this.onMove.bind(this);
+		this.clock = new THREE.Clock();
+		this.cameraPos = new THREE.Vector3(_utilsConfig2['default'].camera.position.x, _utilsConfig2['default'].camera.position.y, _utilsConfig2['default'].camera.position.z);
+		this.currentCameraPos = new THREE.Vector3(this.cameraPos.x, this.cameraPos.y, this.cameraPos.z);
 
-				this.plane = null;
-				this.explosionsPos = [];
-				this.explosionsTime = [];
-				this.nbrParticles = 100000;
+		this.plane = null;
+		this.explosionsPos = [];
+		this.explosionsTime = [];
+		this.nbrParticles = 100000;
 
-				// KEEP THIS SHIT
-				// ADD VALUES IN A PREDEFINED LENGTH ARRAY
-				// POP THE LASTS AND UNSHIFT THE NEW ONES
+		// KEEP THIS SHIT
+		// ADD VALUES IN A PREDEFINED LENGTH ARRAY
+		// POP THE LASTS AND UNSHIFT THE NEW ONES
 
-				//// RENDERER
-				this.renderer = new THREE.WebGLRenderer({
-						antialias: true,
-						alpha: true
-				});
-				this.renderer.setClearColor(_utilsConfig2['default'].canvas.color, 0);
-				// this.renderer.setSize(window.innerWidth, window.innerHeight);
-				this.renderer.setSize(640, 480);
+		//// RENDERER
+		this.renderer = new THREE.WebGLRenderer({
+			antialias: true,
+			alpha: true
+		});
+		this.renderer.setClearColor(_utilsConfig2['default'].canvas.color, 0);
+		// this.renderer.setSize(window.innerWidth, window.innerHeight);
+		this.renderer.setSize(640, 480);
 
-				//// INIT
-				this.scene = new THREE.Scene();
-				this.container = _utilsConfig2['default'].canvas.element;
+		//// INIT
+		this.scene = new THREE.Scene();
+		this.container = _utilsConfig2['default'].canvas.element;
 
-				// this.camera 		   = new THREE.PerspectiveCamera(45, this.ratio, 15, 3000);
-				// this.camera.position.x = config.camera.position.x;
-				// this.camera.position.y = config.camera.position.y;
-				// this.camera.position.z = config.camera.position.z;
-				// this.camera.lookAt(config.camera.target);
+		// this.camera 		   = new THREE.PerspectiveCamera(45, this.ratio, 15, 3000);
+		// this.camera.position.x = config.camera.position.x;
+		// this.camera.position.y = config.camera.position.y;
+		// this.camera.position.z = config.camera.position.z;
+		// this.camera.lookAt(config.camera.target);
 
-				this.camera = new THREE.Camera();
-				this.scene.add(this.camera);
+		this.camera = new THREE.Camera();
+		this.scene.add(this.camera);
 
-				if (_utilsConfig2['default'].axisHelper) {
-						this.axisHelper = new THREE.AxisHelper(5);
-						this.scene.add(this.axisHelper);
-				}
-
-				//// AMBIANT LIGHT
-				this.ambient = new THREE.AmbientLight(_utilsConfig2['default'].lights.ambient.color);
-
-				//// ADD OBJECTS TO SCENE
-				this.scene.add(this.ambient);
-
-				//// ADD CANVAS TO DOM
-				this.container.appendChild(this.renderer.domElement);
-
-				this.createAR();
-				this.createParticles();
-
-				//// REGIST RENDERER
-				_utilsRaf2['default'].register(this.render);
-				_utilsRaf2['default'].start();
-				this.onResize();
-				this.addControls();
-
-				// window.addEventListener( 'click', this.onClick );
-				window.addEventListener('resize', this.onResize);
-				window.addEventListener('mousemove', this.onMove);
-		},
-
-		createAR: function createAR() {
-				this.onRenderFcts = new Array();
-				var _this = this;
-
-				this.arToolkitSource = new THREEx.ArToolkitSource({
-						// to read from the webcam
-						// sourceType : 'webcam',
-
-						// to read from an image
-						// sourceType : 'image',
-						// sourceUrl : '../../data/images/img.jpg',		
-
-						// to read from a video
-						sourceType: 'video',
-						sourceUrl: './assets/medias/headtracking.mp4'
-				});
-
-				this.arToolkitSource.init(function onReady() {
-						console.log('source is ready');
-
-						// handle resize of renderer
-						_this.arToolkitSource.onResize(_this.renderer.domElement);
-				});
-
-				this.arToolkitContext = new THREEx.ArToolkitContext({
-						cameraParametersUrl: './vendor/camera_para.dat',
-						detectionMode: 'mono'
-				});
-
-				// initialize it
-				this.arToolkitContext.init(function onCompleted() {
-						// copy projection matrix to camera
-						_this.camera.projectionMatrix.copy(_this.arToolkitContext.getProjectionMatrix());
-				});
-
-				// update artoolkit on every frame
-				this.onRenderFcts.push(function () {
-						if (_this.arToolkitSource.ready === false) return;
-
-						_this.arToolkitContext.update(_this.arToolkitSource.domElement);
-				});
-
-				this.markerRoot = new THREE.Group();
-				this.scene.add(this.markerRoot);
-				this.artoolkitMarker = new THREEx.ArMarkerControls(this.arToolkitContext, this.markerRoot, {
-						type: 'pattern',
-						// patternUrl : '../../data/data/patt.hiro',
-						patternUrl: './vendor/patt.kanji'
-				});
-		},
-
-		createParticles: function createParticles() {
-				this.uniforms = {
-						time: { type: 'f', value: 0.0 },
-						map: { type: 't', value: THREE.ImageUtils.loadTexture(_utilsConfig2['default'].particles.texture) }
-
-				};
-
-				this.geometry = new THREE.BufferGeometry();
-				this.vertices = new Float32Array(this.nbrParticles * 3);
-				this.sizes = new Float32Array(this.nbrParticles);
-
-				for (var i = 0; i < this.nbrParticles; i++) {
-						this.vertices = this.randomizePoints(this.vertices, i);
-						this.vertices = this.normalizePoints(this.vertices, i);
-
-						this.sizes[i] = 1;
-				}
-
-				this.geometry.addAttribute('position', new THREE.BufferAttribute(this.vertices, 3));
-				this.geometry.addAttribute('size', new THREE.BufferAttribute(this.sizes, 1));
-
-				this.material = new THREE.ShaderMaterial({
-						uniforms: this.uniforms,
-						transparent: true,
-						vertexShader: require('../shaders/noises/noise2D.glsl') + require('../shaders/particles.vertex.glsl'),
-						fragmentShader: require('../shaders/particles.fragment.glsl')
-				});
-
-				this.particleSystem = new THREE.Points(this.geometry, this.material);
-
-				this.markerRoot.add(this.particleSystem);
-		},
-
-		addControls: function addControls() {
-				var _this2 = this;
-
-				this.buttons = document.querySelectorAll('.btn');
-
-				if (this.buttons.length === 0) {
-						return;
-				}
-
-				var _loop = function (i) {
-						var btn = _this2.buttons[i];
-
-						btn.addEventListener('click', function () {
-
-								for (var j = 0; j < _this2.buttons.length; j++) {
-										_this2.buttons[j].classList.remove('is-active');
-								}
-
-								btn.classList.add('is-active');
-								_this2.nbrParticles = parseInt(btn.getAttribute('data-value')) * 1000;
-								_this2.scene.remove(_this2.particleSystem);
-								_this2.createParticles();
-						});
-				};
-
-				for (var i = 0; i < this.buttons.length; i++) {
-						_loop(i);
-				}
-		},
-
-		randomizePoints: function randomizePoints(vertices, i) {
-				vertices[i * 3] = Math.random() * 2 - 1;
-				vertices[i * 3 + 1] = Math.random() * 2 - 1;
-				vertices[i * 3 + 2] = Math.random() * 2 - 1;
-
-				if (vertices[i * 3] * vertices[i * 3] + vertices[i * 3 + 1] * vertices[i * 3 + 1] + vertices[i * 3 + 2] * vertices[i * 3 + 2] > 1) {
-						vertices = this.randomizePoints(vertices, i);
-				}
-
-				return vertices;
-		},
-
-		normalizePoints: function normalizePoints(vertices, i) {
-				var length = Math.sqrt(vertices[i * 3] * vertices[i * 3] + vertices[i * 3 + 1] * vertices[i * 3 + 1] + vertices[i * 3 + 2] * vertices[i * 3 + 2]);
-
-				vertices[i * 3] /= length;
-				vertices[i * 3 + 1] /= length;
-				vertices[i * 3 + 2] /= length;
-
-				return vertices;
-		},
-
-		onClick: function onClick(event) {},
-
-		onMove: function onMove(event) {
-				this.cameraPos.x = event.clientX - this.halfWidth;
-				this.cameraPos.y = event.clientY - this.halfHeight;
-		},
-
-		onResize: function onResize() {
-				// this.renderer.setSize(window.innerWidth, window.innerHeight);
-				// this.ratio = window.innerWidth / window.innerHeight;
-
-				// this.camera.aspect = this.ratio;
-				// this.camera.updateProjectionMatrix();
-
-				// this.halfWidth = window.innerWidth * .5;
-				// this.halfHeight = window.innerHeight * .5;
-
-				this.arToolkitSource.onResize(this.renderer.domElement);
-		},
-
-		render: function render() {
-				var _this3 = this;
-
-				var delta = this.clock.getDelta();
-
-				this.currentCameraPos.x += (this.cameraPos.x * .7 - this.currentCameraPos.x) * 0.01;
-				this.currentCameraPos.y += (this.cameraPos.y * .8 - this.currentCameraPos.y) * 0.01;
-
-				// this.camera.position.set( this.currentCameraPos.x, this.currentCameraPos.y, this.currentCameraPos.z );
-				// this.camera.lookAt(config.camera.target);
-
-				this.uniforms.time.value += delta;
-
-				this.onRenderFcts.forEach(function (onRenderFct) {
-						onRenderFct(delta / 1000, _this3.uniforms.time.value / 1000);
-				});
-
-				this.renderer.render(this.scene, this.camera);
+		if (_utilsConfig2['default'].axisHelper) {
+			this.axisHelper = new THREE.AxisHelper(5);
+			this.scene.add(this.axisHelper);
 		}
+
+		//// AMBIANT LIGHT
+		this.ambient = new THREE.AmbientLight(_utilsConfig2['default'].lights.ambient.color);
+
+		//// ADD OBJECTS TO SCENE
+		this.scene.add(this.ambient);
+
+		//// ADD CANVAS TO DOM
+		this.container.appendChild(this.renderer.domElement);
+
+		this.createAR();
+		this.createParticles();
+
+		//// REGIST RENDERER
+		_utilsRaf2['default'].register(this.render);
+		_utilsRaf2['default'].start();
+		this.onResize();
+		this.addControls();
+
+		// window.addEventListener( 'click', this.onClick );
+		window.addEventListener('resize', this.onResize);
+		window.addEventListener('mousemove', this.onMove);
+	},
+
+	createAR: function createAR() {
+		this.onRenderFcts = new Array();
+		var _this = this;
+
+		this.arToolkitSource = new THREEx.ArToolkitSource({
+			// to read from the webcam
+			sourceType: 'webcam'
+
+		});
+
+		// to read from an image
+		// sourceType : 'image',
+		// sourceUrl : '../../data/images/img.jpg',		
+
+		// to read from a video
+		// sourceType : 'video',
+		// sourceUrl : './assets/medias/headtracking.mp4',		
+		this.arToolkitSource.init(function onReady() {
+			console.log('source is ready');
+
+			// handle resize of renderer
+			_this.arToolkitSource.onResize(_this.renderer.domElement);
+		});
+
+		this.arToolkitContext = new THREEx.ArToolkitContext({
+			cameraParametersUrl: './vendor/camera_para.dat',
+			detectionMode: 'mono'
+		});
+
+		// initialize it
+		this.arToolkitContext.init(function onCompleted() {
+			// copy projection matrix to camera
+			_this.camera.projectionMatrix.copy(_this.arToolkitContext.getProjectionMatrix());
+		});
+
+		// update artoolkit on every frame
+		this.onRenderFcts.push(function () {
+			if (_this.arToolkitSource.ready === false) return;
+
+			_this.arToolkitContext.update(_this.arToolkitSource.domElement);
+		});
+
+		this.markerRoot = new THREE.Group();
+		this.scene.add(this.markerRoot);
+		this.artoolkitMarker = new THREEx.ArMarkerControls(this.arToolkitContext, this.markerRoot, {
+			type: 'pattern',
+			// patternUrl : '../../data/data/patt.hiro',
+			patternUrl: './vendor/patt.kanji'
+		});
+	},
+
+	createParticles: function createParticles() {
+		this.uniforms = {
+			time: { type: 'f', value: 0.0 },
+			map: { type: 't', value: THREE.ImageUtils.loadTexture(_utilsConfig2['default'].particles.texture) }
+
+		};
+
+		this.geometry = new THREE.BufferGeometry();
+		this.vertices = new Float32Array(this.nbrParticles * 3);
+		this.sizes = new Float32Array(this.nbrParticles);
+
+		for (var i = 0; i < this.nbrParticles; i++) {
+			this.vertices = this.randomizePoints(this.vertices, i);
+			this.vertices = this.normalizePoints(this.vertices, i);
+
+			this.sizes[i] = 1;
+		}
+
+		this.geometry.addAttribute('position', new THREE.BufferAttribute(this.vertices, 3));
+		this.geometry.addAttribute('size', new THREE.BufferAttribute(this.sizes, 1));
+
+		this.material = new THREE.ShaderMaterial({
+			uniforms: this.uniforms,
+			transparent: true,
+			vertexShader: require('../shaders/noises/noise2D.glsl') + require('../shaders/particles.vertex.glsl'),
+			fragmentShader: require('../shaders/particles.fragment.glsl')
+		});
+
+		this.particleSystem = new THREE.Points(this.geometry, this.material);
+
+		this.markerRoot.add(this.particleSystem);
+	},
+
+	addControls: function addControls() {
+		var _this2 = this;
+
+		this.buttons = document.querySelectorAll('.btn');
+
+		if (this.buttons.length === 0) {
+			return;
+		}
+
+		var _loop = function (i) {
+			var btn = _this2.buttons[i];
+
+			btn.addEventListener('click', function () {
+
+				for (var j = 0; j < _this2.buttons.length; j++) {
+					_this2.buttons[j].classList.remove('is-active');
+				}
+
+				btn.classList.add('is-active');
+				_this2.nbrParticles = parseInt(btn.getAttribute('data-value')) * 1000;
+				_this2.scene.remove(_this2.particleSystem);
+				_this2.createParticles();
+			});
+		};
+
+		for (var i = 0; i < this.buttons.length; i++) {
+			_loop(i);
+		}
+	},
+
+	randomizePoints: function randomizePoints(vertices, i) {
+		vertices[i * 3] = Math.random() * 2 - 1;
+		vertices[i * 3 + 1] = Math.random() * 2 - 1;
+		vertices[i * 3 + 2] = Math.random() * 2 - 1;
+
+		if (vertices[i * 3] * vertices[i * 3] + vertices[i * 3 + 1] * vertices[i * 3 + 1] + vertices[i * 3 + 2] * vertices[i * 3 + 2] > 1) {
+			vertices = this.randomizePoints(vertices, i);
+		}
+
+		return vertices;
+	},
+
+	normalizePoints: function normalizePoints(vertices, i) {
+		var length = Math.sqrt(vertices[i * 3] * vertices[i * 3] + vertices[i * 3 + 1] * vertices[i * 3 + 1] + vertices[i * 3 + 2] * vertices[i * 3 + 2]);
+
+		vertices[i * 3] /= length;
+		vertices[i * 3 + 1] /= length;
+		vertices[i * 3 + 2] /= length;
+
+		return vertices;
+	},
+
+	onClick: function onClick(event) {},
+
+	onMove: function onMove(event) {
+		this.cameraPos.x = event.clientX - this.halfWidth;
+		this.cameraPos.y = event.clientY - this.halfHeight;
+	},
+
+	onResize: function onResize() {
+		// this.renderer.setSize(window.innerWidth, window.innerHeight);
+		// this.ratio = window.innerWidth / window.innerHeight;
+
+		// this.camera.aspect = this.ratio;
+		// this.camera.updateProjectionMatrix();
+
+		// this.halfWidth = window.innerWidth * .5;
+		// this.halfHeight = window.innerHeight * .5;
+
+		this.arToolkitSource.onResize(this.renderer.domElement);
+	},
+
+	render: function render() {
+		var _this3 = this;
+
+		var delta = this.clock.getDelta();
+
+		this.currentCameraPos.x += (this.cameraPos.x * .7 - this.currentCameraPos.x) * 0.01;
+		this.currentCameraPos.y += (this.cameraPos.y * .8 - this.currentCameraPos.y) * 0.01;
+
+		// this.camera.position.set( this.currentCameraPos.x, this.currentCameraPos.y, this.currentCameraPos.z );
+		// this.camera.lookAt(config.camera.target);
+
+		this.uniforms.time.value += delta;
+
+		this.onRenderFcts.forEach(function (onRenderFct) {
+			onRenderFct(delta / 1000, _this3.uniforms.time.value / 1000);
+		});
+
+		this.renderer.render(this.scene, this.camera);
+	}
 
 };
 
-},{"../shaders/noises/noise2D.glsl":"D:\\Documents\\git\\ar-abstract\\src\\scripts\\shaders\\noises\\noise2D.glsl","../shaders/particles.fragment.glsl":"D:\\Documents\\git\\ar-abstract\\src\\scripts\\shaders\\particles.fragment.glsl","../shaders/particles.vertex.glsl":"D:\\Documents\\git\\ar-abstract\\src\\scripts\\shaders\\particles.vertex.glsl","../utils/config":"D:\\Documents\\git\\ar-abstract\\src\\scripts\\utils\\config.js","../utils/mapper":"D:\\Documents\\git\\ar-abstract\\src\\scripts\\utils\\mapper.js","../utils/raf":"D:\\Documents\\git\\ar-abstract\\src\\scripts\\utils\\raf.js","three":"D:\\Documents\\git\\ar-abstract\\node_modules\\three\\build\\three.js"}],"D:\\Documents\\git\\ar-abstract\\src\\scripts\\initialize.js":[function(require,module,exports){
+},{"../shaders/noises/noise2D.glsl":"/Users/tommy.cornilleau/Desktop/TEMP/ar-abstract/src/scripts/shaders/noises/noise2D.glsl","../shaders/particles.fragment.glsl":"/Users/tommy.cornilleau/Desktop/TEMP/ar-abstract/src/scripts/shaders/particles.fragment.glsl","../shaders/particles.vertex.glsl":"/Users/tommy.cornilleau/Desktop/TEMP/ar-abstract/src/scripts/shaders/particles.vertex.glsl","../utils/config":"/Users/tommy.cornilleau/Desktop/TEMP/ar-abstract/src/scripts/utils/config.js","../utils/mapper":"/Users/tommy.cornilleau/Desktop/TEMP/ar-abstract/src/scripts/utils/mapper.js","../utils/raf":"/Users/tommy.cornilleau/Desktop/TEMP/ar-abstract/src/scripts/utils/raf.js","three":"/Users/tommy.cornilleau/Desktop/TEMP/ar-abstract/node_modules/three/build/three.js"}],"/Users/tommy.cornilleau/Desktop/TEMP/ar-abstract/src/scripts/initialize.js":[function(require,module,exports){
 'use strict';
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
@@ -43586,16 +43586,16 @@ window.onload = function () {
 	_componentsScene2['default'].init();
 };
 
-},{"./components/scene":"D:\\Documents\\git\\ar-abstract\\src\\scripts\\components\\scene.js"}],"D:\\Documents\\git\\ar-abstract\\src\\scripts\\shaders\\noises\\noise2D.glsl":[function(require,module,exports){
-module.exports = "//\r\n// Description : Array and textureless GLSL 2D simplex noise function.\r\n//      Author : Ian McEwan, Ashima Arts.\r\n//  Maintainer : stegu\r\n//     Lastmod : 20110822 (ijm)\r\n//     License : Copyright (C) 2011 Ashima Arts. All rights reserved.\r\n//               Distributed under the MIT License. See LICENSE file.\r\n//               https://github.com/ashima/webgl-noise\r\n//               https://github.com/stegu/webgl-noise\r\n// \r\n\r\nvec3 mod289(vec3 x) {\r\n  return x - floor(x * (1.0 / 289.0)) * 289.0;\r\n}\r\n\r\nvec2 mod289(vec2 x) {\r\n  return x - floor(x * (1.0 / 289.0)) * 289.0;\r\n}\r\n\r\nvec3 permute(vec3 x) {\r\n  return mod289(((x*34.0)+1.0)*x);\r\n}\r\n\r\nfloat snoise(vec2 v)\r\n  {\r\n  const vec4 C = vec4(0.211324865405187,  // (3.0-sqrt(3.0))/6.0\r\n                      0.366025403784439,  // 0.5*(sqrt(3.0)-1.0)\r\n                     -0.577350269189626,  // -1.0 + 2.0 * C.x\r\n                      0.024390243902439); // 1.0 / 41.0\r\n// First corner\r\n  vec2 i  = floor(v + dot(v, C.yy) );\r\n  vec2 x0 = v -   i + dot(i, C.xx);\r\n\r\n// Other corners\r\n  vec2 i1;\r\n  //i1.x = step( x0.y, x0.x ); // x0.x > x0.y ? 1.0 : 0.0\r\n  //i1.y = 1.0 - i1.x;\r\n  i1 = (x0.x > x0.y) ? vec2(1.0, 0.0) : vec2(0.0, 1.0);\r\n  // x0 = x0 - 0.0 + 0.0 * C.xx ;\r\n  // x1 = x0 - i1 + 1.0 * C.xx ;\r\n  // x2 = x0 - 1.0 + 2.0 * C.xx ;\r\n  vec4 x12 = x0.xyxy + C.xxzz;\r\n  x12.xy -= i1;\r\n\r\n// Permutations\r\n  i = mod289(i); // Avoid truncation effects in permutation\r\n  vec3 p = permute( permute( i.y + vec3(0.0, i1.y, 1.0 ))\r\n\t\t+ i.x + vec3(0.0, i1.x, 1.0 ));\r\n\r\n  vec3 m = max(0.5 - vec3(dot(x0,x0), dot(x12.xy,x12.xy), dot(x12.zw,x12.zw)), 0.0);\r\n  m = m*m ;\r\n  m = m*m ;\r\n\r\n// Gradients: 41 points uniformly over a line, mapped onto a diamond.\r\n// The ring size 17*17 = 289 is close to a multiple of 41 (41*7 = 287)\r\n\r\n  vec3 x = 2.0 * fract(p * C.www) - 1.0;\r\n  vec3 h = abs(x) - 0.5;\r\n  vec3 ox = floor(x + 0.5);\r\n  vec3 a0 = x - ox;\r\n\r\n// Normalise gradients implicitly by scaling m\r\n// Approximation of: m *= inversesqrt( a0*a0 + h*h );\r\n  m *= 1.79284291400159 - 0.85373472095314 * ( a0*a0 + h*h );\r\n\r\n// Compute final noise value at P\r\n  vec3 g;\r\n  g.x  = a0.x  * x0.x  + h.x  * x0.y;\r\n  g.yz = a0.yz * x12.xz + h.yz * x12.yw;\r\n  return 130.0 * dot(m, g);\r\n}\r\n";
+},{"./components/scene":"/Users/tommy.cornilleau/Desktop/TEMP/ar-abstract/src/scripts/components/scene.js"}],"/Users/tommy.cornilleau/Desktop/TEMP/ar-abstract/src/scripts/shaders/noises/noise2D.glsl":[function(require,module,exports){
+module.exports = "//\n// Description : Array and textureless GLSL 2D simplex noise function.\n//      Author : Ian McEwan, Ashima Arts.\n//  Maintainer : stegu\n//     Lastmod : 20110822 (ijm)\n//     License : Copyright (C) 2011 Ashima Arts. All rights reserved.\n//               Distributed under the MIT License. See LICENSE file.\n//               https://github.com/ashima/webgl-noise\n//               https://github.com/stegu/webgl-noise\n// \n\nvec3 mod289(vec3 x) {\n  return x - floor(x * (1.0 / 289.0)) * 289.0;\n}\n\nvec2 mod289(vec2 x) {\n  return x - floor(x * (1.0 / 289.0)) * 289.0;\n}\n\nvec3 permute(vec3 x) {\n  return mod289(((x*34.0)+1.0)*x);\n}\n\nfloat snoise(vec2 v)\n  {\n  const vec4 C = vec4(0.211324865405187,  // (3.0-sqrt(3.0))/6.0\n                      0.366025403784439,  // 0.5*(sqrt(3.0)-1.0)\n                     -0.577350269189626,  // -1.0 + 2.0 * C.x\n                      0.024390243902439); // 1.0 / 41.0\n// First corner\n  vec2 i  = floor(v + dot(v, C.yy) );\n  vec2 x0 = v -   i + dot(i, C.xx);\n\n// Other corners\n  vec2 i1;\n  //i1.x = step( x0.y, x0.x ); // x0.x > x0.y ? 1.0 : 0.0\n  //i1.y = 1.0 - i1.x;\n  i1 = (x0.x > x0.y) ? vec2(1.0, 0.0) : vec2(0.0, 1.0);\n  // x0 = x0 - 0.0 + 0.0 * C.xx ;\n  // x1 = x0 - i1 + 1.0 * C.xx ;\n  // x2 = x0 - 1.0 + 2.0 * C.xx ;\n  vec4 x12 = x0.xyxy + C.xxzz;\n  x12.xy -= i1;\n\n// Permutations\n  i = mod289(i); // Avoid truncation effects in permutation\n  vec3 p = permute( permute( i.y + vec3(0.0, i1.y, 1.0 ))\n\t\t+ i.x + vec3(0.0, i1.x, 1.0 ));\n\n  vec3 m = max(0.5 - vec3(dot(x0,x0), dot(x12.xy,x12.xy), dot(x12.zw,x12.zw)), 0.0);\n  m = m*m ;\n  m = m*m ;\n\n// Gradients: 41 points uniformly over a line, mapped onto a diamond.\n// The ring size 17*17 = 289 is close to a multiple of 41 (41*7 = 287)\n\n  vec3 x = 2.0 * fract(p * C.www) - 1.0;\n  vec3 h = abs(x) - 0.5;\n  vec3 ox = floor(x + 0.5);\n  vec3 a0 = x - ox;\n\n// Normalise gradients implicitly by scaling m\n// Approximation of: m *= inversesqrt( a0*a0 + h*h );\n  m *= 1.79284291400159 - 0.85373472095314 * ( a0*a0 + h*h );\n\n// Compute final noise value at P\n  vec3 g;\n  g.x  = a0.x  * x0.x  + h.x  * x0.y;\n  g.yz = a0.yz * x12.xz + h.yz * x12.yw;\n  return 130.0 * dot(m, g);\n}\n";
 
-},{}],"D:\\Documents\\git\\ar-abstract\\src\\scripts\\shaders\\particles.fragment.glsl":[function(require,module,exports){
-module.exports = "uniform sampler2D map;\r\n\r\nvoid main() {\r\n\r\n\tgl_FragColor = texture2D( map, vec2( gl_PointCoord.x, 1.0 - gl_PointCoord.y ) );\r\n\r\n\tgl_FragColor = gl_FragColor * vec4( 1., 1., 1., 1. );\r\n\r\n}\r\n";
+},{}],"/Users/tommy.cornilleau/Desktop/TEMP/ar-abstract/src/scripts/shaders/particles.fragment.glsl":[function(require,module,exports){
+module.exports = "uniform sampler2D map;\n\nvoid main() {\n\n\tgl_FragColor = texture2D( map, vec2( gl_PointCoord.x, 1.0 - gl_PointCoord.y ) );\n\n\tgl_FragColor = gl_FragColor * vec4( 1., 1., 1., 1. );\n\n}\n";
 
-},{}],"D:\\Documents\\git\\ar-abstract\\src\\scripts\\shaders\\particles.vertex.glsl":[function(require,module,exports){
-module.exports = "\r\n\r\n#define M_PI 3.1415926535897932384626433832795\r\n#define DIST 1.0\r\n#define TIME_FACTOR .01\r\n\r\nuniform float time;\r\n\r\nattribute float size;\r\n\r\nvoid main() {\r\n\tvec3 newPosition\t= position;\r\n\tvec3 angle \t\t\t= vec3( \r\n\t\tsnoise( vec2( position.x, time * TIME_FACTOR ) ) * M_PI,\r\n\t\tsnoise( vec2( position.y, time * TIME_FACTOR ) ) * M_PI,\r\n\t\tsnoise( vec2( position.z, time * TIME_FACTOR ) ) * M_PI\r\n\t);\r\n\r\n\tmat3 rotX = mat3(\t1,\t\t\t\t0,\t\t\t\t\t0,\r\n\t\t\t\t\t\t0,\t\t\t\tcos(angle.x), \t\t-sin(angle.x),\r\n\t\t\t\t\t\t0,\t\t\t\tsin(angle.x), \t\tcos(angle.x) );\r\n\r\n\tmat3 rotY = mat3(\tcos(angle.y),\t\t0,\t\t\t\t\tsin(angle.y),\r\n\t\t\t\t\t\t0,\t\t\t\t\t1, \t\t\t\t\t0,\r\n\t\t\t\t\t\t-sin(angle.y),\t\t0,\t\t\t \t\tcos(angle.y) );\r\n\r\n\tmat3 rotZ = mat3(\tcos(angle.z),\t\tsin(angle.z),\t\t0,\r\n\t\t\t\t\t\t-sin(angle.z),\t\tcos(angle.z),\t\t0,\r\n\t\t\t\t\t\t0,\t\t\t\t\t0,\t\t\t\t\t1 );\r\n\r\n\tnewPosition = newPosition * rotZ * rotX * rotY;\r\n\r\n\t// newPosition.x = snoise( vec2( position.x, time * .01) );\r\n\t// newPosition.y = snoise( vec2( position.y, time * .01) );\r\n\t// newPosition.z = snoise( vec2( position.z, time * .01) );\r\n\r\n\tnewPosition = newPosition * DIST;\r\n\r\n\t// float angle1 = 2. * M_PI * fakePosition.x;\r\n\t// float angle2 = acos( fakePosition.y * 2. - 1. );\r\n\r\n\t// newPosition.x = DIST * sin( angle2 ) * cos( angle1 );\r\n\t// newPosition.y = DIST * sin( angle2 ) * sin( angle1 );\r\n\t// newPosition.z = DIST * cos( angle2 );\r\n\r\n\r\n\r\n\tvec4 mvPosition = modelViewMatrix * vec4( newPosition, 1. );\r\n\r\n\tgl_PointSize = size * ( 5. / - mvPosition.z );\r\n\r\n    gl_Position = projectionMatrix * mvPosition;\r\n}";
+},{}],"/Users/tommy.cornilleau/Desktop/TEMP/ar-abstract/src/scripts/shaders/particles.vertex.glsl":[function(require,module,exports){
+module.exports = "\n\n#define M_PI 3.1415926535897932384626433832795\n#define DIST 1.0\n#define TIME_FACTOR .01\n\nuniform float time;\n\nattribute float size;\n\nvoid main() {\n\tvec3 newPosition\t= position;\n\tvec3 angle \t\t\t= vec3( \n\t\tsnoise( vec2( position.x, time * TIME_FACTOR ) ) * M_PI,\n\t\tsnoise( vec2( position.y, time * TIME_FACTOR ) ) * M_PI,\n\t\tsnoise( vec2( position.z, time * TIME_FACTOR ) ) * M_PI\n\t);\n\n\tmat3 rotX = mat3(\t1,\t\t\t\t0,\t\t\t\t\t0,\n\t\t\t\t\t\t0,\t\t\t\tcos(angle.x), \t\t-sin(angle.x),\n\t\t\t\t\t\t0,\t\t\t\tsin(angle.x), \t\tcos(angle.x) );\n\n\tmat3 rotY = mat3(\tcos(angle.y),\t\t0,\t\t\t\t\tsin(angle.y),\n\t\t\t\t\t\t0,\t\t\t\t\t1, \t\t\t\t\t0,\n\t\t\t\t\t\t-sin(angle.y),\t\t0,\t\t\t \t\tcos(angle.y) );\n\n\tmat3 rotZ = mat3(\tcos(angle.z),\t\tsin(angle.z),\t\t0,\n\t\t\t\t\t\t-sin(angle.z),\t\tcos(angle.z),\t\t0,\n\t\t\t\t\t\t0,\t\t\t\t\t0,\t\t\t\t\t1 );\n\n\tnewPosition = newPosition * rotZ * rotX * rotY;\n\n\t// newPosition.x = snoise( vec2( position.x, time * .01) );\n\t// newPosition.y = snoise( vec2( position.y, time * .01) );\n\t// newPosition.z = snoise( vec2( position.z, time * .01) );\n\n\tnewPosition = newPosition * DIST;\n\n\t// float angle1 = 2. * M_PI * fakePosition.x;\n\t// float angle2 = acos( fakePosition.y * 2. - 1. );\n\n\t// newPosition.x = DIST * sin( angle2 ) * cos( angle1 );\n\t// newPosition.y = DIST * sin( angle2 ) * sin( angle1 );\n\t// newPosition.z = DIST * cos( angle2 );\n\n\n\n\tvec4 mvPosition = modelViewMatrix * vec4( newPosition, 1. );\n\n\tgl_PointSize = size * ( 5. / - mvPosition.z );\n\n    gl_Position = projectionMatrix * mvPosition;\n}";
 
-},{}],"D:\\Documents\\git\\ar-abstract\\src\\scripts\\utils\\config.js":[function(require,module,exports){
+},{}],"/Users/tommy.cornilleau/Desktop/TEMP/ar-abstract/src/scripts/utils/config.js":[function(require,module,exports){
 "use strict";
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj["default"] = obj; return newObj; } }
@@ -43648,7 +43648,7 @@ var config = {
 
 module.exports = config;
 
-},{"three":"D:\\Documents\\git\\ar-abstract\\node_modules\\three\\build\\three.js"}],"D:\\Documents\\git\\ar-abstract\\src\\scripts\\utils\\mapper.js":[function(require,module,exports){
+},{"three":"/Users/tommy.cornilleau/Desktop/TEMP/ar-abstract/node_modules/three/build/three.js"}],"/Users/tommy.cornilleau/Desktop/TEMP/ar-abstract/src/scripts/utils/mapper.js":[function(require,module,exports){
 // https://github.com/tommycor/mapperJS/blob/master/mapper-min.js
 "use strict";
 
@@ -43658,7 +43658,7 @@ function mapper(val, oMin, oMax, nMin, nMax) {
 
 module.exports = mapper;
 
-},{}],"D:\\Documents\\git\\ar-abstract\\src\\scripts\\utils\\raf.js":[function(require,module,exports){
+},{}],"/Users/tommy.cornilleau/Desktop/TEMP/ar-abstract/src/scripts/utils/raf.js":[function(require,module,exports){
 'use strict';
 
 function Raf() {
@@ -43707,6 +43707,6 @@ Raf.prototype.control = function (event) {
 
 module.exports = new Raf();
 
-},{}]},{},["D:\\Documents\\git\\ar-abstract\\src\\scripts\\initialize.js"])
+},{}]},{},["/Users/tommy.cornilleau/Desktop/TEMP/ar-abstract/src/scripts/initialize.js"])
 
 //# sourceMappingURL=bundle.js.map

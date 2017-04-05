@@ -140,12 +140,24 @@ THREEx.ArToolkitSource.prototype._initSourceWebcam = function(onReady) {
 
 	navigator.mediaDevices.enumerateDevices().then(function(devices) {
         // define getUserMedia() constraints
-        var constraints = {video: true, toString: function(){ return "video"; }};
+
+        var deviceSourceId = null;
 
 		devices.forEach(function(device) {
-			if( device.kind !== 'videoinput' )	return
-			constraints.video.optional = [{sourceId: device.deviceId}]
+			console.log('device', device);
+			if( device.label == 'camera 0, facing back' )	{
+				deviceSourceId = device.deviceId;
+			}
 		});
+
+		if( deviceSourceId == null ) {
+	    	var constraints = { video: true, audio: false };
+		}
+		else {
+	    	var constraints = { video: {deviceId: deviceSourceId ? {exact: deviceSourceId} : undefined} };
+		}
+
+		console.log('deviceSourceId', constraints);
 
 		// OLD API
                 // it it finds the videoSource 'environment', modify constraints.video
