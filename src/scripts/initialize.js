@@ -1,4 +1,4 @@
-import scene from './components/scene'
+import scene from './components/scene';
 
 window.onload = function() {
 

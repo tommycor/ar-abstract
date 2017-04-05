@@ -1,7 +1,7 @@
 
 
 #define M_PI 3.1415926535897932384626433832795
-#define DIST 300.0
+#define DIST 1.0
 #define TIME_FACTOR .01
 
 uniform float time;
@@ -47,7 +47,7 @@ void main() {
 
 	vec4 mvPosition = modelViewMatrix * vec4( newPosition, 1. );
 
-	gl_PointSize = size * ( 500. / - mvPosition.z );
+	gl_PointSize = size * ( 5. / - mvPosition.z );
 
     gl_Position = projectionMatrix * mvPosition;
 }
